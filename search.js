@@ -54,7 +54,7 @@ function startSearch() {
    * Before the actual search starts, it is checked whether previous search terms are present. If so, the previous selection and the search message will be removed.
    */
   if(searchMessageText || markedSearchResult) {
-  	// Clear previous search message - removes the search message text
+    // Clear previous search message - removes the search message text
     searchMessageText.remove();
 
     // Clear previous search result - controlls if previous result exists and removes marker from text everytime
@@ -73,7 +73,7 @@ function startSearch() {
  
     // Output of "input is empty message"
     searchMessage.innerHTML += "<span class='error-message' id='searchMessageText'>Please enter a search term</span>"; 
-	  return false;
+    return false;
 
   } 
   // Condition search was successful
@@ -89,13 +89,14 @@ function startSearch() {
     textBox.innerHTML = markerHTML;
 
     // Output of "success search message"
-  	searchMessage.innerHTML += "<span class='success-message' id='searchMessageText'>We have found "+countResult+" search Results</span>"; 
+    searchMessage.innerHTML += "<span class='success-message' id='searchMessageText'>We have found "+countResult+" search Results</span>"; 
 
   } 
   // Condition search was not successful
   else {
+	  
     // Output of "nothing found message"
-	  searchMessage.innerHTML += "<span class='error-message' id='searchMessageText'>Sorry, we have found "+countResult+" results</span>"; 
+    searchMessage.innerHTML += "<span class='error-message' id='searchMessageText'>Sorry, we have found "+countResult+" results</span>"; 
 
   };	
 
