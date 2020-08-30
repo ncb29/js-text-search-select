@@ -3,6 +3,7 @@
  * Search input functions
  *
  */
+
 // Hides the searchIcon when focus on input
 function hideSearchIcon() {
     var elem = document.getElementById("searchIcon");
@@ -27,6 +28,7 @@ function resetSearchValue() {
  * Search function
  *
  */
+
 function startSearch() {
 
   // Var input - value
@@ -53,6 +55,7 @@ function startSearch() {
   /*
    * Before the actual search starts, it is checked whether previous search terms are present. If so, the previous selection and the search message will be removed.
    */
+	
   if(searchMessageText || markedSearchResult) {
     // Clear previous search message - removes the search message text
     searchMessageText.remove();
@@ -68,6 +71,7 @@ function startSearch() {
    * Here we check if the input is empty, if something was found during the search or if nothing was found during the search
    * and output the corresponding result
    */
+	
   // Condition input is empty
   if (inputValue == "") {
  
