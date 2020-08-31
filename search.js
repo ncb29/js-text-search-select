@@ -40,9 +40,9 @@ function startSearch() {
   var searchMessageText = document.getElementById("searchMessageText");
 
   // Var text container - id
-  var textBox = document.getElementById('textBox');
+  var textBox = document.getElementById("textBox");
   // Var text container - content
-  let text = document.getElementById('textBox').textContent;
+  let text = document.getElementById("textBox").textContent;
 
   // Var search result marker - class
   var markedSearchResult = document.getElementsByClassName("search-hit")[0];
@@ -55,7 +55,7 @@ function startSearch() {
   /*
    * Before the actual search starts, it is checked whether previous search terms are present. If so, the previous selection and the search message will be removed.
    */
-	
+  
   if(searchMessageText || markedSearchResult) {
     // Clear previous search message - removes the search message text
     searchMessageText.remove();
@@ -71,7 +71,7 @@ function startSearch() {
    * Here we check if the input is empty, if something was found during the search or if nothing was found during the search
    * and output the corresponding result
    */
-	
+  
   // Condition input is empty
   if (inputValue == "") {
  
@@ -98,11 +98,11 @@ function startSearch() {
   } 
   // Condition search was not successful
   else {
-	  
+    
     // Output of "nothing found message"
     searchMessage.innerHTML += "<span class='error-message' id='searchMessageText'>Sorry, we have found "+countResult+" results</span>"; 
 
-  };	
+  };  
 
 
 }
