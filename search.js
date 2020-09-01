@@ -32,68 +32,70 @@ function resetSearchValue() {
 function startSearch() {
 
   // Var input - value
-  var inputValue = document.getElementById("searchInput").value;
-
-  // Var search message container - id
-  var searchMessage = document.getElementById("searchMessage");
-  // Var search message Text - id
-  var searchMessageText = document.getElementById("searchMessageText");
+  var searchValue = document.getElementById("searchInput").value;
 
   // Var text container - id
   var textBox = document.getElementById("textBox");
   // Var text container - content
   var text = document.getElementById("textBox").textContent;
 
-  // Var search result marker - class
-  var markedSearchResult = document.getElementsByClassName("search-hit")[0];
-  var replaceMarker = text.replace("", "")
+  // Var search message container - id
+  var searchMessage = document.getElementById("searchMessage");
+  // Var search message Text - id
+  var searchMessageText = document.getElementById("searchMessageText");
 
   // Var number of search results
-  var countResult = text.split(inputValue).length - 1;
+  var countResult = text.split(searchValue).length - 1;
+
+  // Var for clear search result marker - class
+  var markedSearchResult = document.getElementsByClassName("search-hit")[0];
+  var deleteMarker = text.replace("", "");
+
+  // Consts for search result marker
+  const splitSearchValue = searchValue.split(/\s/);
+  const searchValuePattern = new RegExp(`(${splitSearchValue.join('|')})`, 'g'); 
+  const finalSearchResult = text.replace(searchValuePattern, match => `<span class='search-hit'>${match}</span>`);
  
 
   /*
-   * Before the actual search starts, it is checked whether previous search terms are present. If so, the previous selection and the search message will be removed.
+   * Before the actual search starts, it is checked whether previous search terms are present. If so, the previous search marker and message will be removed.
    */
   
   if(searchMessageText || markedSearchResult) {
     // Clear previous search message - removes the search message text
     searchMessageText.remove();
 
-    // Clear previous search result - controlls if previous result exists and removes marker from text everytime
+    // Clear previous search result marker
     if(markedSearchResult) {
-      textBox.innerHTML = replaceMarker;
+      textBox.innerHTML = deleteMarker;
     };
   }
 
 
   /*
-   * Here we check if the input is empty, if something was found during the search or if nothing was found during the search
-   * and output the corresponding result
+   * Here we check if the input is empty, if something was found or if nothing was found during the search and output the corresponding result.
    */
   
   // Condition input is empty
-  if (inputValue == "") {
+  if (searchValue == "") {
  
     // Output of "input is empty message"
     searchMessage.innerHTML += "<span class='error-message' id='searchMessageText'>Please enter a search term</span>"; 
+
     return false;
 
   } 
   // Condition search was successful
-  else if (text.includes(inputValue)) {
-    
-    // Variables that are needed to mark the search result must be here, otherwise the unmarking of the previous search result will not work
-    var textBoxInnerHTML = textBox.innerHTML;
-    var index = textBoxInnerHTML.indexOf(inputValue);
-    
-    // Marks the search result   
-    // TODO: mark multiple search results
-    var markerHTML = textBoxInnerHTML.substring(0,index) + "<span class='search-hit'>" + textBoxInnerHTML.substring(index,index+inputValue.length) + "</span>" + textBoxInnerHTML.substring(index + inputValue.length);   
-    textBox.innerHTML = markerHTML;
+  else if (text.includes(searchValue)) {
+
+    // Clear the textbox
+    textBox.innerHTML = "";
+
+    // Add the text with marked search results
+    textBox.innerHTML += finalSearchResult;
 
     // Output of "success search message"
-    searchMessage.innerHTML += "<span class='success-message' id='searchMessageText'>We have found "+countResult+" search Results</span>"; 
+    searchMessage.innerHTML += "<span class='success-message' id='searchMessageText'>We have found "+countResult+" search Results</span>";
 
   } 
   // Condition search was not successful
