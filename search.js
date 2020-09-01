@@ -42,7 +42,7 @@ function startSearch() {
   // Var text container - id
   var textBox = document.getElementById("textBox");
   // Var text container - content
-  let text = document.getElementById("textBox").textContent;
+  var text = document.getElementById("textBox").textContent;
 
   // Var search result marker - class
   var markedSearchResult = document.getElementsByClassName("search-hit")[0];
